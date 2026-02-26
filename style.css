@@ -1,0 +1,679 @@
+/* ==================================================
+   1. RESET & BASE
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #eaeaea;;
+    color: #222;
+    line-height: 1.6;
+}
+
+h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    border-bottom: 2px solid #000;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+
+/* ==================================================
+   2. NAVIGATION
+================================================== */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background: rgba(255,255,255,0);
+    transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+    z-index: 1000;
+}
+
+nav a {
+    margin: 0 25px;
+    text-decoration: none;
+    color: rgb(214, 214, 214);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-right {
+    position: absolute;
+    right: 5%;
+    padding: 0px 10px;
+    border: 1px solid currentColor;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.9;
+}
+
+nav.hide {
+    transform: translateY(-100%);
+}
+
+nav.scrolled {
+    background: rgb(206, 206, 206);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+nav.scrolled a {
+    color: #222;
+}
+
+
+/* ==================================================
+   3. LAYOUT SECTIONS (GLOBAL)
+================================================== */
+
+section {
+    padding: 100px 10%;
+    background: #eaeaea;
+    margin-bottom: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: #111;
+    color: white;
+}
+
+
+/* ==================================================
+   4. HERO SLIDER (HOME)
+================================================== */
+
+header {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero-slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    animation: zoom 10s ease-in-out infinite;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+@keyframes zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+    color:#eaeaea;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    letter-spacing: 3px;
+}
+
+.hero-content p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+
+/* ==================================================
+   5. SOBRE MI
+================================================== */
+
+#sobre-mi {
+    background:#eaeaea;
+}
+
+.sobre-mi-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.sobre-mi-img img {
+    width: 320px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    filter: grayscale(100%);
+    transition: 0.4s ease;
+}
+
+.sobre-mi-img img:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+.sobre-mi-texto h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.sobre-mi-texto p {
+    line-height: 1.7;
+    color: #444;
+    font-size: 16px;
+}
+
+
+/* ==================================================
+   6. PROYECTOS (HOME GRID)
+================================================== */
+
+#proyectos {
+    padding: 100px 10%;
+    background:#eaeaea;
+}
+
+#proyectos h2 {
+    text-align: center;
+    margin-bottom: 60px;
+    font-size: 32px;
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.project {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.project img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: #eaeaea;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+.project:hover img {
+    transform: scale(1.05);
+}
+
+.project:hover .project-info {
+    opacity: 1;
+}
+
+
+/* ==================================================
+   7. CONTACTO
+================================================== */
+
+#contacto {
+    background: #eaeaea;
+}
+
+.contact-container {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #000;
+    outline: none;
+}
+
+.contact-form button {
+    padding: 15px;
+    background: #111;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.contact-form button:hover {
+    background: #333;
+}
+
+
+/* ==================================================
+   8. PROYECTO DETALLE PAGE
+================================================== */
+
+/* HERO FULL SCREEN */
+.proyecto-hero {
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.hero-imagen {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================
+   HERO OVERLAY + TEXTO
+========================================== */
+
+.proyecto-hero {
+    position: relative; /* importante */
+}
+
+/* Capa oscura */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45); /* ajustá intensidad */
+    z-index: 1;
+}
+
+/* Texto encima */
+.hero-content-proyecto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 0 10%;
+}
+
+.hero-content-proyecto h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+.hero-content-proyecto p {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* BLOQUE SUPERIOR (IMAGEN + TEXTO LATERAL) */
+
+.proyecto-top {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.proyecto-media {
+    flex: 1;
+    min-width: 320px;
+}
+
+.proyecto-media img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+.proyecto-description {
+    flex: 1;
+    min-width: 320px;
+}
+
+
+/* TITULO Y TEXTO */
+
+.proyecto-header h1,
+#titulo {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.concepto,
+#descripcion {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px;
+    color: #444;
+    margin-bottom: 60px;
+}
+
+/* SECCIÓN PROYECTO TEXTO FULLSCREEN */
+
+#proyectoss {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;      /* centra vertical */
+    justify-content: center;  /* centra horizontal */
+    text-align: 0;
+    padding: 0 8%;
+}
+
+#proyectoss .project-top {
+    max-width: 1200px;
+    width: 100%;
+}
+
+#proyectoss .project-title {
+    font-size: 3rem;
+    margin-bottom: 30px;
+}
+
+#proyectoss .project-text {
+    max-width: 1200px;
+    margin: 0 auto 50px auto;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    margin-bottom: 50px;
+    color: #444;
+}
+
+#proyectoss .project-data {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    font-size: 0.95rem;
+    color: #555;
+}
+/* FICHA TÉCNICA */
+
+.proyecto-ficha {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.proyecto-ficha div {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+
+/* GALERÍA */
+
+.proyecto-galeria {
+    column-count: 3;
+    column-gap: 30px;
+}
+
+.proyecto-galeria img {
+    width: 100%;
+    margin-bottom: 30px;
+    break-inside: avoid;
+}
+
+.proyecto-galeria img:hover {
+    transform: scale(1.02);
+}
+
+#descripcion {
+    white-space: pre-line;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+    z-index: 2000;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    z-index: 2;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.lightbox-nav {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.lightbox-nav:hover {
+    opacity: 0.6;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 40px;
+    color: white;
+    font-size: 14px;
+    letter-spacing: 2px;
+    z-index: 3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .lightbox-nav {
+        font-size: 30px;
+    }
+
+    .lightbox-close {
+        top: 20px;
+        right: 25px;
+    }
+}
+
+/* ==================================================
+   9. RESPONSIVE
+================================================== */
+
+@media (max-width: 992px) {
+
+    .sobre-mi-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sobre-mi-img img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .sobre-mi-texto {
+        margin-top: 30px;
+        max-width: 600px;
+    }
+
+    .proyecto-hero {
+        height: 60vh;
+    }
+
+    .proyecto-ficha {
+        grid-template-columns: 1fr;
+    }
+
+    .proyecto-info {
+        padding: 60px 8%;
+    }
+
+    
+
+
+}
+
+@media (max-width: 1200px) {
+    .proyecto-galeria {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .proyecto-galeria {
+        column-count: 1;
+    }
+}
+
+/* =========================
+   NAV RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+        padding: 15px 0;
+    }
+
+    nav a {
+        margin: 8px 15px;
+    }
+
+    .nav-right {
+        position: static; /* deja de ser absoluto */
+        margin-top: 5px;
+    }
+
+}
