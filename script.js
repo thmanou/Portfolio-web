@@ -89,7 +89,7 @@ const observer = new IntersectionObserver(entries => {
             observer.unobserve(circle);
         }
     });
-}, { threshold: 0.5 });
+}, { threshold: 0.2 });
 
 circles.forEach(circle => {
     observer.observe(circle);
