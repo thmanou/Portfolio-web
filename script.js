@@ -47,6 +47,53 @@ document.addEventListener("mousemove", (e) => {
     }
 });
 
+// HABILIDADES //
+
+const circles = document.querySelectorAll(".circle");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+
+            const circle = entry.target;
+            const percent = parseInt(circle.getAttribute("data-percent"));
+            const span = circle.querySelector("span");
+
+            let current = 0;
+
+            // Color dinámico según porcentaje
+            function getColor(value) {
+                if (value >= 85) return "#111";        // alto - negro
+                if (value >= 70) return "#444";        // medio - gris oscuro
+                if (value >= 50) return "#777";        // medio bajo - gris
+                return "#aaa";                         // bajo - gris claro
+            }
+
+            const interval = setInterval(() => {
+
+                if (current >= percent) {
+                    clearInterval(interval);
+                } else {
+                    current++;
+
+                    const color = getColor(percent);
+
+                    circle.style.background =
+                        `conic-gradient(${color} ${current * 3.6}deg, #ddd 0deg)`;
+
+                    span.textContent = current + "%";
+                }
+
+            }, 15);
+
+            observer.unobserve(circle);
+        }
+    });
+}, { threshold: 0.5 });
+
+circles.forEach(circle => {
+    observer.observe(circle);
+});
 
 // PROYECTOS //
 
